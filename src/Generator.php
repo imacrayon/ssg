@@ -100,6 +100,11 @@ class Generator
     {
         $directory = Arr::get($this->config, 'glide.directory');
 
+        config([
+            'statamic.assets.image_manipulation.cache' => true,
+            'statamic.assets.image_manipulation.cache_path' => $this->config['destination'].'/'.$directory,
+        ]);
+
         // Determine which adapter to use for Flysystem 1.x or 3.x.
         $localAdapter = class_exists($legacyAdapter = '\League\Flysystem\Adapter\Local')
             ? $legacyAdapter
